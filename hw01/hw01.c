@@ -29,6 +29,7 @@ int main()
     data = malloc(sizeof(char *) * N);
     A = malloc(sizeof(char *) * N);
 
+    scanf("%c", &temp);				// to Read "\n" 
     // Read a list of n words and store into A array, using Dynamic Store
     for (i = 0; i < N; i++) {
         capacity = 10;
@@ -87,17 +88,17 @@ int main()
 void copyArray(char **data, char **A, int n)
 {
     int i;                                              // loop index
-
+    
     for (i = 0; i < n; i++) {
         A[i] = malloc(sizeof(char) * strlen(data[i]));  // dynamic allocate A[i]
-        strcpy(A[i], data[i]);                          // copy data to A
+        A[i] = data[i];                          // copy data to A
     }
 }
 
 double GetTime(void)
 {
     struct timeval tv;
-
+    
     gettimeofday(&tv, NULL);
     return tv.tv_sec + 1e-6 * tv.tv_usec;
 }
@@ -134,7 +135,7 @@ void InsertionSort(char **list, int n)
             list[j+1] = list[j];            // Move A[j] up by one position
         }
         list[j+1] = item;                   // Move A[i] to A[i+1].
-    }
+    }    
 }
 
 void BubbleSort(char **list, int n)
@@ -158,10 +159,10 @@ void BubbleSort(char **list, int n)
 void OddEvenSort(char **list, int n)
 {
     int done = 0;                       // the state flag, 1: done, 0: undone
-
+    
     int i;                              // loop index
     char* temp;                         // temporary variable for swap
-
+    
     while (done != 1) {
         done = 1;                       // set the flag as done
         for (i = 1; i < n-1; i+=2) {
