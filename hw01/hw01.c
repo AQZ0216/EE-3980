@@ -109,7 +109,7 @@ void SelectionSort(char **list, int n)
     int min;                        // to record the index of smallest element
     char* temp;                                 // temporary variable for swap
 
-    for (i = 0; i < n; i++) {
+    for (i = 0; i < n-1; i++) {
         min = i;
         for (j = i+1; j < n; j++) {     // Search for the smallest in A[i+1:n]
             if (strcmp(list[j], list[min]) < 0) {
