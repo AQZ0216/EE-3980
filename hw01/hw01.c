@@ -26,14 +26,14 @@ int main()
     int capacity;                           // the capacity of character array
 
     scanf("%d", &N);                            // Read n
-    data = malloc(sizeof(char *) * N);
-    A = malloc(sizeof(char *) * N);
+    data = malloc(N * sizeof(char *));
+    A = malloc(N * sizeof(char *));
 
     scanf("%c", &temp);				// to Read "\n" 
     // Read a list of n words and store into A array, using Dynamic Store
     for (i = 0; i < N; i++) {
         capacity = 10;
-        data[i] = malloc(sizeof(char) * capacity);
+        data[i] = malloc(capacity * sizeof(char));
         scanf("%c", &temp);
         for(j = 0; temp != '\n'; j++) {
             // if overflow, double the capacity
