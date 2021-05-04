@@ -19,7 +19,7 @@ void Merge(char **list, int low, int mid, int high);    // merge two lists
 int Partition(char **list, int low, int high);  // Partition A by a pivot
 void Swap(char **list, int i, int j);           // swap list[i] and list[j]
 
-int main()
+int main(void)
 {
     int i, j;                                   // loop index
     double t;                                   // for CPU time tracking
