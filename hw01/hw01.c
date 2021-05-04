@@ -1,6 +1,6 @@
 // EE3980 HW01 Quadratic Sorts
 // 106061151, 劉安得
-// 2020/03/13
+// 2021/03/13
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,7 +14,7 @@ void InsertionSort(char **list, int n);         // in-place insertion sort
 void BubbleSort(char **list, int n);            // in-place bubble sort
 void OddEvenSort(char **list, int n);           // in-place shaker sort
 
-int main()
+int main(void)
 {
     int i, j;                                   // loop index
     double t;                                   // for CPU time tracking
@@ -22,28 +22,15 @@ int main()
     char **data;                                // input data
     char **A;                                   // array to be sorted
     int R = 500;                                // number of repetitions
-    char temp;                          // temporary variable to read character
-    int capacity;                           // the capacity of character array
 
     scanf("%d", &N);                            // Read n
     data = malloc(N * sizeof(char *));
     A = malloc(N * sizeof(char *));
 
-    scanf("%c", &temp);				// to Read "\n" 
     // Read a list of n words and store into A array, using Dynamic Store
     for (i = 0; i < N; i++) {
-        capacity = 10;
-        data[i] = malloc(capacity * sizeof(char));
-        scanf("%c", &temp);
-        for(j = 0; temp != '\n'; j++) {
-            // if overflow, double the capacity
-            if (j >= capacity) {
-                capacity *= 2;
-                data[i] = realloc(data[i], sizeof(char) * capacity);
-            }
-            data[i][j] = temp;
-            scanf("%c", &temp);
-        }
+        data[i] = malloc(100 * sizeof(char));
+        scanf("%s", data[i]);
     }
 
     t = GetTime();                              // initialize time counter
@@ -52,7 +39,7 @@ int main()
         SelectionSort(A, N);                    // execute selection sort
     }
     t = (GetTime() - t) / R;                // calculate CPU time per iteration
-    printf("Selection sort: N = %d CPU = %lf seconds\n", N, t);
+    printf("Selection sort: N = %d CPU = %g seconds\n", N, t);
                                                 // print out CPU time
 
     // repeat for other sorts
@@ -62,24 +49,24 @@ int main()
         InsertionSort(A, N);
     }
     t = (GetTime() - t) / R;
-    printf("Insertion sort: N = %d CPU = %lf seconds\n", N, t);
+    printf("Insertion sort: N = %d CPU = %g seconds\n", N, t);
     t = GetTime();
     for (i = 0; i < R; i++) {
         copyArray(data, A, N);
         BubbleSort(A, N);
     }
     t = (GetTime() - t) / R;
-    printf("Bubble sort: N = %d CPU = %lf seconds\n", N, t);
+    printf("Bubble sort: N = %d CPU = %g seconds\n", N, t);
     t = GetTime();
     for (i = 0; i < R; i++) {
         copyArray(data, A, N);
         OddEvenSort(A, N);
     }
     t = (GetTime() - t) / R;
-    printf("OddEven sort: N = %d CPU = %lf seconds\n", N, t);
+    printf("OddEven sort: N = %d CPU = %g seconds\n", N, t);
 
     for (i = 0; i < N; i++) {
-        printf("%d %s\n", i, A[i]);             // print sorted results
+        printf("%d %s\n", i + 1, A[i]);             // print sorted results
     }
 
     return 0;
@@ -107,7 +94,7 @@ void SelectionSort(char **list, int n)
 {
     int i, j;                                   // loop index
     int min;                        // to record the index of smallest element
-    char* temp;                                 // temporary variable for swap
+    char *temp;                                 // temporary variable for swap
 
     for (i = 0; i < n-1; i++) {
         min = i;
@@ -126,7 +113,7 @@ void SelectionSort(char **list, int n)
 void InsertionSort(char **list, int n)
 {
     int i, j;                               // loop index
-    char* item;                             // item to save list[i] temporary
+    char *item;                             // item to save list[i] temporary
 
     for (i = 1; i < n; i++) {               // Assume A[1:i-1] already sorted
         item = list[i];
@@ -141,7 +128,7 @@ void InsertionSort(char **list, int n)
 void BubbleSort(char **list, int n)
 {
     int i, j;                               // loop index
-    char* temp;                             // temporary variable for swap
+    char *temp;                             // temporary variable for swap
 
     for (i = 0; i < n-1; i++) {             // Find the smallest item for A[i]
         for (j = n-1; j > i; j--) {
@@ -161,7 +148,7 @@ void OddEvenSort(char **list, int n)
     int done = 0;                       // the state flag, 1: done, 0: undone
     
     int i;                              // loop index
-    char* temp;                         // temporary variable for swap
+    char *temp;                         // temporary variable for swap
     
     while (done != 1) {
         done = 1;                       // set the flag as done
